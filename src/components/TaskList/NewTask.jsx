@@ -1,22 +1,20 @@
 import React from 'react'
 
-const NewTask = () => {
+const NewTask = ({data}) => {
     return (
-        <div>
             <div className='p-5 flex-shrink-0 h-full w-[300px] bg-purple-500 rounded-xl'>
                 <div className='flex justify-between items-center '>
-                    <h3 className="bg-red-600 px-3 py-1 rounded text-sm">High</h3>
-                    <h4 className='text-sm'>26 feb 2026</h4>
+                    <h3 className="bg-red-600 px-3 py-1 rounded text-sm">{data.category}</h3>
+                    <h4 className='text-sm'>{data.taskDate}</h4>
                 </div>
-                <h2 className="mt-5 text-2xl font-semibold"> Make a Youtube Video</h2>
+                <h2 className="mt-5 text-2xl font-semibold"> {data.taskTitle}</h2>
                 <p className='text-sm mt-2'>
-                    hic, ad neque magni aspernatur molestiae alias, totam iste similique numquam voluptatum in facere laborum repellendus!
+                    {data.taskDescription}
                 </p>
                 <div className='flex justify-between mt-4'>
                     <button className='bg-green-500 py-1 px-2 text-sm'>Accept Task</button>
                 </div>
             </div>
-        </div>
     )
 }
 

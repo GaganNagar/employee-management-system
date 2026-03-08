@@ -8,7 +8,7 @@ import { AuthContext } from './context/AuthProvider'
 const App = () => {
 
   const [user, setUser] = useState(null)
-  const authData = useContext(AuthContext)
+  const [userData, setUserData] = useContext(AuthContext)
 const [loggedInUserData, setloggedInUserData] = useState(null)
 
 
@@ -19,16 +19,14 @@ useEffect(() => {
       const userData = JSON.parse(loggedInUser)
       setUser({ role: userData.role })
       setloggedInUserData(userData.data)
-      // console.log(userData)
     }
 }, [])
 
-
   const handleLogin = (email, password) => {
 
-  if(!authData) return
+  if(!userData) return
 
-  const admin = authData.admin.find(
+ const admin = userData?.admin?.find(
     (e) => email === e.email && password === e.password
   )
 
@@ -39,7 +37,7 @@ useEffect(() => {
     return
   }
 
-  const employee = authData.employees.find(
+  const employee = userData?.employees?.find(
     (e) => email === e.email && password === e.password
   )
 
@@ -57,11 +55,11 @@ useEffect(() => {
     <>
       {!user && <Login handleLogin={handleLogin} />}
 
-      {user?.role === 'admin' && <AdminDashboard />}
+      {user?.role === 'admin' && <AdminDashboard changeUser={setUser} />}
 
-      {user?.role === 'employee' && <EmployeDashboard data={loggedInUserData} />}
+      {user?.role === 'employee' && <EmployeDashboard changeUser={setUser} data={loggedInUserData} />}
     </>
   )
 }
-
+ 
 export default App

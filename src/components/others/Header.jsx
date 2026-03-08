@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Header = () => {
+const Header = (props) => {
 
     const loggedOutUser =  ()=>{
 
       localStorage.setItem('loggedInUser', '')
-      window.location.reload()  // auto realod ke liye
+      props.changeUser('')
     }
 
   return (
